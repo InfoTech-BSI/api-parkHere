@@ -2,8 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
+const cors = require('cors');
 const usuarioRouter = require('./routes/usuarioRoute');
 const loginRouter = require('./routes/loginRoute');
+const estacionamentoRoute = require('./routes/estacionamentoRoute');
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(
@@ -19,6 +23,8 @@ app.get('/', (req, res) => {
 app.use('/usuario', usuarioRouter);
 
 app.use('/login', loginRouter);
+
+app.use('/estacionamento', estacionamentoRoute);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
