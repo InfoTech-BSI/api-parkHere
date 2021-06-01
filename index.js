@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 const usuarioRouter = require('./routes/usuarioRoute');
+const loginRouter = require('./routes/loginRoute');
 
 app.use(bodyParser.json());
 app.use(
@@ -16,6 +17,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/usuario', usuarioRouter);
+
+app.use('/login', loginRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
