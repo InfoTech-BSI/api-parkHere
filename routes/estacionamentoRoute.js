@@ -11,5 +11,14 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+router.get('/:id', async function(req, res, next) {
+  try {
+    res.json(await EstacionamentoService.dadosEstacionamento(req.params.id, req.body));
+  } catch (err) {
+    console.error(`Erro ao obter o estacionamento`, err.message);
+    next(err);
+  }
+});
+
 
 module.exports = router;
