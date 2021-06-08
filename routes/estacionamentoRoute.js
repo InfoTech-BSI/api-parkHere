@@ -20,5 +20,31 @@ router.get('/:id', async function(req, res, next) {
   }
 });
 
+router.post('/', async function(req, res, next) {
+  try {
+    res.json(await EstacionamentoService.inserirEstacionamento(req.body));
+  } catch (err) {
+    console.error(`Erro ao cadastrar o estacionamento`, err.message);
+    next(err);
+  }
+});
+
+router.put('/:id', async function(req, res, next) {
+  try {
+    res.json(await EstacionamentoService.atualizarEstacionamento(req.params.id, req.body));
+  } catch (err) {
+    console.error(`Erro ao atualizar o estacionamento`, err.message);
+    next(err);
+  }
+});
+
+router.delete('/:id', async function(req, res, next) {
+  try {
+    res.json(await EstacionamentoService.deletarEstacionamento(req.params.id));
+  } catch (err) {
+    console.error(`Erro ao deltar o estacionamento`, err.message);
+    next(err);
+  }
+});
 
 module.exports = router;

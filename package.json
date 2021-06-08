@@ -1,7 +1,7 @@
 {
-  "name": "api-parkHere",
+  "name": "api-parkhere",
   "version": "1.0.0",
-  "description": "",
+  "description": "API com NODE js",
   "main": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
@@ -9,12 +9,19 @@
     "mysql2": "^2.2.5",
     "package.json": "^2.0.1"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InfoTech-BSI/api-parkHere.git"
+  },
+  "bugs": {
+    "url": "https://github.com/InfoTech-BSI/api-parkHere/issues"
+  },
+  "homepage": "https://github.com/InfoTech-BSI/api-parkHere#readme"
 }
