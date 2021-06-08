@@ -6,7 +6,7 @@ router.get('/', async function(req, res, next) {
   try {
     res.json(await EstacionamentoService.obterEstacionamentos(req.query.page));
   } catch (err) {
-    console.error(`Erro ao obter os estacionamento`, err.message);
+    console.error(`Erro ao obter os estacionamentos`, err.message);
     next(err);
   }
 });
@@ -42,7 +42,7 @@ router.delete('/:id', async function(req, res, next) {
   try {
     res.json(await EstacionamentoService.deletarEstacionamento(req.params.id));
   } catch (err) {
-    console.error(`Erro ao deltar o estacionamento`, err.message);
+    console.error(`Erro ao deletar o estacionamento`, err.message);
     next(err);
   }
 });

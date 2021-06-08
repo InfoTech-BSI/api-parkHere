@@ -24,11 +24,6 @@ async function dadosEstacionamento(id, page = 1) {
 	};
 }
 
-module.exports = {
-	obterEstacionamentos,
-	dadosEstacionamento,
-};
-
 async function inserirEstacionamento(estacionamento) {
 	const result = await db.query(`INSERT INTO estacionamento
 	(nome,telefone,whatsapp,dias_funciona,horas_funciona,endereco,imagem)

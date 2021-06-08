@@ -6,6 +6,7 @@ const cors = require('cors');
 const usuarioRouter = require('./routes/usuarioRoute');
 const loginRouter = require('./routes/loginRoute');
 const estacionamentoRoute = require('./routes/estacionamentoRoute');
+const reservaRoute = require('./routes/reservaRoute');
 
 app.use(cors());
 
@@ -25,6 +26,8 @@ app.use('/usuario', usuarioRouter);
 app.use('/login', loginRouter);
 
 app.use('/estacionamento', estacionamentoRoute);
+
+app.use('/reserva', reservaRoute);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
