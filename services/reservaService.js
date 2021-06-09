@@ -24,6 +24,17 @@ async function dadosReserva(id, page = 1) {
 	};
 }
 
+async function dadosReservaUsuario(usuario, page = 1) {
+	const rows = await db.query(`SELECT * FROM reserva where idUsuario = ?`,[usuario]);
+	const data = helper.emptyOrRows(rows);
+	const meta = { page };
+
+	return {
+		data,
+		meta,
+	};
+}
+
 async function inserirReserva(reserva) {
 	const result = await db.query(`INSERT INTO reserva
 	(idUsuario,idEstacionamento,inicioReserva,fimReserva,diaReserva,atualizacao)
@@ -76,6 +87,7 @@ async function atualizarReserva(id, reserva){
 module.exports = {
 	obterReservas,
 	dadosReserva,
+	dadosReservaUsuario,
 	inserirReserva,
 	atualizarReserva,
 	deletarReserva

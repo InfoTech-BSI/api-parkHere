@@ -6,7 +6,16 @@ router.get('/', async function(req, res, next) {
   try {
     res.json(await ReservaService.obterReservas(req.query.page));
   } catch (err) {
-    console.error(`Erro ao obter as reservaa`, err.message);
+    console.error(`Erro ao obter as reservas`, err.message);
+    next(err);
+  }
+});
+
+router.get('/usuario/:usuario', async function(req, res, next) {
+  try {
+    res.json(await ReservaService.dadosReservaUsuario(req.params.usuario, req.body));
+  } catch (err) {
+    console.error(`Erro ao obter a reserva do usuário`, err.message);
     next(err);
   }
 });
