@@ -3,7 +3,7 @@ const helper = require('../config/helper');
 const config = require('../config/config');
 
 async function obterReservas(page = 1) {
-	const rows = await db.query(`SELECT * FROM reserva`);
+	const rows = await db.query(`SELECT * FROM reserva r JOIN estacionamento e ON r.idEstacionamento = e.id`);
 	const data = helper.emptyOrRows(rows);
 	const meta = { page };
 
@@ -14,7 +14,7 @@ async function obterReservas(page = 1) {
 }
 
 async function dadosReserva(id, page = 1) {
-	const rows = await db.query(`SELECT * FROM reserva where id = ?`,[id]);
+	const rows = await db.query(`SELECT * FROM reserva r JOIN estacionamento e ON r.idEstacionamento = e.id WHERE r.idReserva = ?`,[id]);
 	const data = helper.emptyOrRows(rows);
 	const meta = { page };
 
@@ -25,7 +25,7 @@ async function dadosReserva(id, page = 1) {
 }
 
 async function dadosReservaUsuario(usuario, page = 1) {
-	const rows = await db.query(`SELECT * FROM reserva where idUsuario = ?`,[usuario]);
+	const rows = await db.query(`SELECT * FROM reserva r JOIN estacionamento e ON r.idEstacionamento = e.id WHERE r.idUsuario = ?`,[usuario]);
 	const data = helper.emptyOrRows(rows);
 	const meta = { page };
 
@@ -54,7 +54,7 @@ async function atualizarReserva(id, reserva){
 	const result = await db.query(
 	  `UPDATE reserva 
 	  SET idUsuario=?, idEstacionamento=?, inicioReserva=?, fimReserva=?, diaReserva=?, atualizacao=?
-	  WHERE id=?`, 
+	  WHERE idReserva=?`, 
 	  [
         reserva.idUsuario, reserva.idEstacionamento, reserva.inicioReserva, reserva.fimReserva, reserva.diaReserva, reserva.atualizacao, id
       ]
@@ -71,7 +71,7 @@ async function atualizarReserva(id, reserva){
   
   async function deletarReserva(id){
 	const result = await db.query(
-	  `DELETE FROM reserva WHERE id=?`, 
+	  `DELETE FROM reserva WHERE idReserva=?`, 
 	  [id]
 	);
   
